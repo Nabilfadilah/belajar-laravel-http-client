@@ -49,20 +49,24 @@ class HttpTest extends TestCase
         self::assertTrue($json['success']);
     }
 
-    // public function testQueryParameter()
-    // {
-    //     $response = Http::withQueryParameters([
-    //         'page' => 1,
-    //         'limit' => 10,
-    //     ])->get("https://enhmm1ik062ud.x.pipedream.net");
-    //     self::assertTrue($response->ok());
-    // }
+    // query parameter
+    public function testQueryParameter()
+    {
+        // withQueryParameters = query parameter
+        $response = Http::withQueryParameters([
+            // parameter page dan limit
+            'page' => 1,
+            'limit' => 10,
+        ])->get("https://enhmm1ik062ud.x.pipedream.net");
+        self::assertTrue($response->ok());
+    }
 
     // public function testHeader()
     // {
     //     $response = Http::withQueryParameters([
     //         'page' => 1,
     //         'limit' => 10,
+    // with headers = header
     //     ])->withHeaders([
     //         'Accept' => 'application/json',
     //         'X-Request-ID' => '123123123',
