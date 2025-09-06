@@ -98,24 +98,32 @@ class HttpTest extends TestCase
     public function testFormPost()
     {
         // asForm() = mengirim request dalam bentuk form request 
-        $response = Http::asForm()->post("https://enhmm1ik062ud.x.pipedream.net", [
-            // kirim data nya, key value
-            "username" => "admin",
-            "password" => "admin"
-        ]);
+        $response = Http::asForm()
+            ->post( // post(url, form), lalu data dikirim ketikan gunakan function ini
+                "https://enhmm1ik062ud.x.pipedream.net",
+                [
+                    // kirim data nya, key value
+                    "username" => "admin",
+                    "password" => "admin"
+                ]
+            );
         self::assertTrue($response->ok());
     }
 
-    // public function testMultipart()
-    // {
-    //     $response = Http::asMultipart()
-    //         ->attach("profile", file_get_contents(__DIR__ . '/HttpTest.php'), "profile.jpg")
-    //         ->post("https://enhmm1ik062ud.x.pipedream.net", [
-    //             "username" => "admin",
-    //             "password" => "admin"
-    //         ]);
-    //     self::assertTrue($response->ok());
-    // }
+    // Multipart
+    public function testMultipart()
+    {
+        // asMultipart(), mengirim http jenis multipart seperti file
+        $response = Http::asMultipart()
+            // attach(key, content, name), untuk mengirim file 
+            ->attach("profile", file_get_contents(__DIR__ . '/HttpTest.php'), "profile.jpg")
+            // post(url, form), dan untuk buka file, bisa gunakan form post
+            ->post("https://enhmm1ik062ud.x.pipedream.net", [
+                "username" => "admin",
+                "password" => "admin"
+            ]);
+        self::assertTrue($response->ok());
+    }
 
     // public function testJSON()
     // {
