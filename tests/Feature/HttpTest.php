@@ -76,20 +76,23 @@ class HttpTest extends TestCase
         self::assertTrue($response->ok());
     }
 
-    // public function testCookie()
-    // {
-    //     $response = Http::withQueryParameters([
-    //         'page' => 1,
-    //         'limit' => 10,
-    //     ])->withHeaders([
-    //         'Accept' => 'application/json',
-    //         'X-Request-ID' => '123123123',
-    //     ])->withCookies([
-    //         "SessionId" => "3242432423",
-    //         "UserId" => "eko",
-    //     ], "enhmm1ik062ud.x.pipedream.net")->get("https://enhmm1ik062ud.x.pipedream.net");
-    //     self::assertTrue($response->ok());
-    // }
+    // Cookie
+    public function testCookie()
+    {
+        $response = Http::withQueryParameters([
+            'page' => 1,
+            'limit' => 10,
+        ])->withHeaders([
+            'Accept' => 'application/json',
+            'X-Request-ID' => '123123123',
+            // withCookies(array, domain) = menambah cookie request
+        ])->withCookies([
+            // misal session, userId
+            "SessionId" => "3242432423",
+            "UserId" => "eko",
+        ], "enhmm1ik062ud.x.pipedream.net")->get("https://enhmm1ik062ud.x.pipedream.net");
+        self::assertTrue($response->ok());
+    }
 
     // public function testFormPost()
     // {
