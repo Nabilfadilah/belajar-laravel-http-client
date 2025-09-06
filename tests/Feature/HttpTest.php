@@ -125,16 +125,19 @@ class HttpTest extends TestCase
         self::assertTrue($response->ok());
     }
 
-    // public function testJSON()
-    // {
-    //     $response = Http::asJson()
-    //         ->post("https://enhmm1ik062ud.x.pipedream.net", [
-    //             "username" => "admin",
-    //             "password" => "admin"
-    //         ]);
-    //     self::assertTrue($response->ok());
-    //     $response->throw();
-    // }
+    // JSON
+    public function testJSON()
+    {
+        // asJson(), mengirim request dalam bentuk JSON 
+        $response = Http::asJson()
+            // data json bisa dikirim di parameter body milik post(url, body), put(url, body) atau patch(url, body)
+            ->post("https://enhmm1ik062ud.x.pipedream.net", [
+                "username" => "admin",
+                "password" => "admin"
+            ]);
+        self::assertTrue($response->ok());
+        $response->throw();
+    }
 
     // public function testTimeout()
     // {
