@@ -94,14 +94,17 @@ class HttpTest extends TestCase
         self::assertTrue($response->ok());
     }
 
-    // public function testFormPost()
-    // {
-    //     $response = Http::asForm()->post("https://enhmm1ik062ud.x.pipedream.net", [
-    //         "username" => "admin",
-    //         "password" => "admin"
-    //     ]);
-    //     self::assertTrue($response->ok());
-    // }
+    // Form post
+    public function testFormPost()
+    {
+        // asForm() = mengirim request dalam bentuk form request 
+        $response = Http::asForm()->post("https://enhmm1ik062ud.x.pipedream.net", [
+            // kirim data nya, key value
+            "username" => "admin",
+            "password" => "admin"
+        ]);
+        self::assertTrue($response->ok());
+    }
 
     // public function testMultipart()
     // {
