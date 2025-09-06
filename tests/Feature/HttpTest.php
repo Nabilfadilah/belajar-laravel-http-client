@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -164,12 +165,18 @@ class HttpTest extends TestCase
         self::assertTrue($response->ok());
     }
 
-    // public function testThrowError()
-    // {
-    //     $this->assertThrows(function () {
-    //         $response = Http::get("https://www.programmerzamannow.com/not-found");
-    //         self::assertEquals(404, $response->status());
-    //         $response->throw();
-    //     }, RequestException::class);
-    // }
+    // Throw error
+    public function testThrowError()
+    {
+        // assertThrows
+        $this->assertThrows(function () {
+            $response = Http::get("https://www.programmerzamannow.com/not-found");
+            self::assertEquals(404, $response->status());
+            // throw()
+            // Laravel HTTP Client, ketika mendapatkan response dengan status code bukan 2xx, dia tidak akan throw Error
+            // Namun, jika kita ingin menjadikan ketika mendapat response 4xx (client error) atau 5xx (server error), kita bisa menggunakan function throw() pada Response
+            // Jika error, maka akan mengembalikan error RequestException
+            $response->throw();
+        }, RequestException::class);
+    }
 }
