@@ -61,18 +61,20 @@ class HttpTest extends TestCase
         self::assertTrue($response->ok());
     }
 
-    // public function testHeader()
-    // {
-    //     $response = Http::withQueryParameters([
-    //         'page' => 1,
-    //         'limit' => 10,
-    // with headers = header
-    //     ])->withHeaders([
-    //         'Accept' => 'application/json',
-    //         'X-Request-ID' => '123123123',
-    //     ])->get("https://enhmm1ik062ud.x.pipedream.net");
-    //     self::assertTrue($response->ok());
-    // }
+    // header
+    public function testHeader()
+    {
+        $response = Http::withQueryParameters([
+            'page' => 1,
+            'limit' => 10,
+            // withHeaders = header, dan isinya array 
+        ])->withHeaders([
+            // array data acceept dan x-request
+            'Accept' => 'application/json',
+            'X-Request-ID' => '123123123',
+        ])->get("https://enhmm1ik062ud.x.pipedream.net");
+        self::assertTrue($response->ok());
+    }
 
     // public function testCookie()
     // {
