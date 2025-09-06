@@ -139,15 +139,17 @@ class HttpTest extends TestCase
         $response->throw();
     }
 
-    // public function testTimeout()
-    // {
-    //     $response = Http::timeout(1)->asJson()
-    //         ->post("https://enhmm1ik062ud.x.pipedream.net", [
-    //             "username" => "admin",
-    //             "password" => "admin"
-    //         ]);
-    //     self::assertTrue($response->ok());
-    // }
+    // Timeout
+    public function testTimeout()
+    {
+        // timeout(second), untuk menentukan berapa lama waktu timeout nya
+        $response = Http::timeout(1)->asJson()
+            ->post("https://enhmm1ik062ud.x.pipedream.net", [
+                "username" => "admin",
+                "password" => "admin"
+            ]);
+        self::assertTrue($response->ok());
+    }
 
     // public function testRetry()
     // {
