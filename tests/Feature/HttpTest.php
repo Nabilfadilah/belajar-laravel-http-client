@@ -151,15 +151,18 @@ class HttpTest extends TestCase
         self::assertTrue($response->ok());
     }
 
-    // public function testRetry()
-    // {
-    //     $response = Http::timeout(1)->retry(5, 1000)->asJson()
-    //         ->post("https://enhmm1ik062ud.x.pipedream.net", [
-    //             "username" => "admin",
-    //             "password" => "admin"
-    //         ]);
-    //     self::assertTrue($response->ok());
-    // }
+    // Retry
+    public function testRetry()
+    {
+        // retry(times, sleep), etika terjadi error, kita bisa meminta HTTP Client untuk melakukan retry 
+        $response = Http::timeout(1)->retry(5, 1000)->asJson()
+            ->post("https://enhmm1ik062ud.x.pipedream.net", [
+                "username" => "admin",
+                "password" => "admin"
+            ]);
+        // Ketika tambahkan informasi retry, secara otomatis Laravel HTTP Client akan mencoba melakukan request lagi sejumlah total times yang kita tentukan
+        self::assertTrue($response->ok());
+    }
 
     // public function testThrowError()
     // {
